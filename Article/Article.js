@@ -134,6 +134,14 @@ function ArticleCreator(title, date, firstP, secondP, thirdP) {
   article.appendChild(secondPar);
   article.appendChild(thirdPar);
   article.appendChild(expandButton);
+
+  //button listener
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+return article;
+
 }
 
 /*
