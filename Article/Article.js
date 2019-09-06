@@ -85,6 +85,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Essential Algorithms',
+    date: 'May 28th, 2019',
+    firstParagraph: `Zyhys onoso jehikagon Aeksiot epi, se gis hen syndrorro jemagon. Nuhor lir gurenna. Skoriot nuhyz zaldrizesse ilzi? Skoros morghot vestri?            Zyhys perzys stepagon Aeksio Ono jorepi, se morghultas lys qelitsos sikagon. Skoros morghot vestri? Valar morghulis. Valor dohaeris. Hen syndrorro, onos.        Hen nuqir, perzys. Hen morghot, glaeson. Nuhor lir gurenna. Skoros morghot vestri? Bantis zobrie issa se ossyngnoti ledys. Avy jorraelan. Nuhor lir              gurenna. Tubi daor.`,
+
+    secondParagraph: `Jin ave sekke verven anni m'orvikoon. Shekh ma shieraki anni. Ezas eshna gech ahilee! San athchomari yeraan. Jin ave sekke verven anni m'orvikoon. Jalan atthirari anni. Es havazhaan. Jalan atthirari anni. Es havazhaan. Anha zhilak yera norethaan. Jalan atthirari anni. Ki fin yeni? Ki fin yeni? Nevakhi vekha ha maan: Rekke, m'aresakea norethi fitte. Hash yer dothrae chek asshekh?`,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -98,17 +109,68 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+*/
 
-  Hint: You will need to use createElement more than once here!
+function ArticleCreator(title, date, firstP, secondP, thirdP) {
+  // create elements
+  let article = document.createElement('div');
+  let articletitle = document.createElement('h2');
+  let articleDate = document.createElement('p');
+  let firstPar = document.createElement('p');
+  let secondPar = document.createElement('p');
+  let thirdPar = document.createElement('p');
+  let expandButton = document.createElement('span');
+  
+  // assign classes
+  article.classList.add('article');
+  articletitle.classList.add('articleTitle');
+  articleDate.classList.add('date');
+  firstPar.classList.add('firstPar');
+  secondPar.classList.add('secondPar');
+  thirdPar.classList.add('thirdPar');
+  expandButton.classList.add('expandButton');
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  // set content
+  articletitle.textContent = title;
+  articleDate.textContent = date;
+  firstPar.textContent = firstP;
+  secondPar.textContent = secondP;
+  thirdPar.textContent = thirdP;
+  expandButton.textContent = "\u2630";
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  // append elements
+  article.appendChild(articletitle);
+  article.appendChild(articleDate);
+  article.appendChild(firstPar);
+  article.appendChild(secondPar);
+  article.appendChild(thirdPar);
+  article.appendChild(expandButton);
 
-  Step 3: return the entire component.
+  //button listener
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+return article;
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+}
 
+let body = document.querySelector('body');
+
+data.forEach(data => {
+  body.appendChild(ArticleCreator(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+}) 
+
+/*
+  Hint: You will need to use createElement more than once here!  x
+
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.  x
+
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.  x
+   
+  Step 3: return the entire component.  x
+
+  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.  x
+
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.  x
 */
